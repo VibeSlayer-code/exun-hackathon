@@ -6,7 +6,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
-socketio = SocketIO(app, cors_allowed_origins="*")  # <-- Add this line
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 
 client = MongoClient("mongodb+srv://vibeslayerdb:Apz21260%40%21@exun-goat.0bv0t4z.mongodb.net/?appName=exun-goat")
@@ -28,11 +28,11 @@ def check_user():
     user = users.find_one({"email": data["email"]})
     if not user:
         return jsonify({"status": "bad", "message": "[-] user not found"}), 404
-    
+
     user.pop("_id", None)
     if user["password"] == data["password"]:
         return jsonify({"status": "OK", "message": "[+] user logged in success", "data": user}), 200
-    
+
     return jsonify({"status": "bad", "message": "[-] incorrect password"}), 401
 
 
@@ -55,7 +55,6 @@ def view_review():
 
 
 
-# Serve index.html at root
 @app.route('/')
 def serve_index():
     return send_from_directory('.', 'index.html')
@@ -107,7 +106,7 @@ if __name__ == "__main__":
     print(" FLASK SERVER STARTED ".center(60, "="))
     print(" Visit → http://127.0.0.1:5000 ".center(60))
     print("="*60 + "\n")
-    
+
 
     print("Registered routes:")
     for rule in app.url_map.iter_rules():
