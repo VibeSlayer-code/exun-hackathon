@@ -601,134 +601,6 @@
         color: rgba(255, 255, 255, 0.1);
         font-weight: 300;
       }
-      .review-modal-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 1000;
-        backdrop-filter: blur(4px);
-      }
-      .review-modal-overlay.active {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-      }
-      .review-modal {
-        background: #1e1e1e;
-        border-radius: 16px;
-        width: 100%;
-        max-width: 600px;
-        padding: 32px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-      }
-      .modal-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 20px;
-      }
-      .modal-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: #8654d8;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        color: white;
-      }
-      .modal-author {
-        flex: 1;
-      }
-      .modal-author-name {
-        font-size: 16px;
-        font-weight: 500;
-        margin-bottom: 2px;
-      }
-      .modal-author-role {
-        font-size: 14px;
-        color: #8654d8;
-      }
-      .input-group {
-        margin-bottom: 16px;
-      }
-      .input-group label {
-        display: block;
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.7);
-        margin-bottom: 6px;
-      }
-      .input-field {
-        width: 100%;
-        background: #2a2a2a;
-        border: 1px solid #3a3a3a;
-        border-radius: 8px;
-        padding: 12px;
-        font-size: 16px;
-        color: #ffffff;
-        font-family: inherit;
-      }
-      .input-field::placeholder {
-        color: #888;
-      }
-      .review-textarea {
-        width: 100%;
-        height: 120px;
-        background: #2a2a2a;
-        border: 1px solid #3a3a3a;
-        border-radius: 8px;
-        padding: 12px;
-        font-size: 16px;
-        color: #ffffff;
-        resize: none;
-        margin-bottom: 16px;
-        font-family: inherit;
-      }
-      .review-textarea::placeholder {
-        color: #888;
-      }
-      .modal-stars {
-        display: flex;
-        gap: 4px;
-        margin-bottom: 20px;
-        justify-content: flex-end;
-      }
-      .modal-star {
-        font-size: 20px;
-        color: rgba(134, 84, 216, 0.3);
-        cursor: pointer;
-        transition: color 0.2s ease;
-      }
-      .modal-star:hover,
-      .modal-star.selected {
-        color: #8654d8;
-      }
-      .post-button {
-        width: 100%;
-        background: #8654d8;
-        color: #ffffff;
-        border: none;
-        padding: 12px;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: background 0.3s ease;
-      }
-      .post-button:hover {
-        background: #9d6be6;
-      }
-      .loading {
-        text-align: center;
-        padding: 20px;
-        color: rgba(255, 255, 255, 0.5);
-      }
       @media (max-width: 1600px) {
         .services-grid {
           grid-template-columns: repeat(2, 1fr);
@@ -926,7 +798,7 @@
             It is going all according to plan
           </p>
         </div>
-        <div class="testimonials-grid" id="testimonials-grid">
+        <div class="testimonials-grid">
           <div class="testimonial-card rating-card">
             <div class="rating-section">
               <div class="rating-score">4.8</div>
@@ -959,7 +831,7 @@
                 </div>
               </div>
             </div>
-            <button class="cta-button" id="open-review">Leave a review</button>
+            <button class="cta-button">Leave a review</button>
           </div>
           <div class="testimonial-card">
             <div class="testimonial-header">
@@ -1039,33 +911,6 @@
         </ul>
       </footer>
     </div>
-    <div class="review-modal-overlay" id="review-modal-overlay">
-      <div class="review-modal">
-        <div class="modal-header">
-          <div class="modal-avatar">U</div>
-          <div class="modal-author">
-            <div class="modal-author-name" id="modal-name-display">
-              Your Name
-            </div>
-            <div class="modal-author-role" id="modal-role-display">
-              Your Role
-            </div>
-          </div>
-        </div>
-        <textarea
-          class="review-textarea"
-          placeholder="Add review..."
-        ></textarea>
-        <div class="modal-stars" id="modal-stars">
-          <span class="modal-star" data-rating="1">★</span>
-          <span class="modal-star" data-rating="2">★</span>
-          <span class="modal-star" data-rating="3">★</span>
-          <span class="modal-star" data-rating="4">★</span>
-          <span class="modal-star" data-rating="5">★</span>
-        </div>
-        <button class="post-button">POST</button>
-      </div>
-    </div>
     <script>
       const loginButton = document.getElementById("login-button");
       const signoutButton = document.getElementById("signout-button");
@@ -1095,179 +940,6 @@
           this.classList.add("active");
         });
       });
-
-      const testimonialsGrid = document.getElementById("testimonials-grid");
-      const openReviewBtn = document.getElementById("open-review");
-      const reviewModalOverlay = document.getElementById(
-        "review-modal-overlay"
-      );
-      const modalStars = document.getElementById("modal-stars");
-      const modalNameDisplay = document.getElementById("modal-name-display");
-      const modalRoleDisplay = document.getElementById("modal-role-display");
-      const postButton = document.querySelector(".post-button");
-      const reviewTextarea = document.querySelector(".review-textarea");
-
-      let currentRating = 0;
-
-      // ---------- Render a single review ----------
-      function renderReviewCard(review) {
-        const card = document.createElement("div");
-        card.className = "testimonial-card";
-
-        let starsHtml = "";
-        for (let i = 1; i <= 5; i++) {
-          starsHtml +=
-            i <= review.stars
-              ? '<span class="star">★</span>'
-              : '<span class="star empty">★</span>';
-        }
-
-        card.innerHTML = `
-      <div class="testimonial-header">
-        <div class="testimonial-avatar">
-          <img src="assets/Home/pfp 2.png" alt="${review.name}">
-        </div>
-        <div class="testimonial-author">
-          <div class="author-name">${review.name || "Anonymous"}</div>
-          <div class="author-role">${review.role || "Customer"}</div>
-        </div>
-        <div class="three-dots">...</div>
-      </div>
-      <div class="testimonial-content">
-        <div class="star-rating">${starsHtml}</div>
-        <p class="testimonial-text">${review.review || ""}</p>
-      </div>
-    `;
-        return card;
-      }
-
-      // ---------- Load reviews from backend ----------
-      async function loadReviews() {
-        try {
-          const res = await fetch("http://127.0.0.1:5000/view_review");
-
-          // If the backend is not running we get HTML → treat as no reviews
-          if (!res.ok || res.headers.get("content-type")?.includes("html")) {
-            console.warn("Backend not reachable – showing only static reviews");
-            return;
-          }
-
-          const data = await res.json();
-          if (data.status === "OK") {
-            // Keep the rating card + static cards (they have data-base attribute)
-            const staticCards = testimonialsGrid.querySelectorAll(
-              ".testimonial-card[data-base]"
-            );
-            testimonialsGrid.innerHTML = ""; // clear everything
-            staticCards.forEach((c) => testimonialsGrid.appendChild(c)); // put static ones back
-            data.data.forEach((r) =>
-              testimonialsGrid.appendChild(renderReviewCard(r))
-            );
-          }
-        } catch (err) {
-          console.warn(
-            "Could not load reviews (server probably not running):",
-            err
-          );
-          // Silently keep the two static reviews you already have
-        }
-      }
-
-      // Load on page load
-      loadReviews();
-
-      // ---------- Modal handling ----------
-      const nameInputGroup = document.createElement("div");
-      nameInputGroup.className = "input-group";
-      nameInputGroup.innerHTML = `<label for="name-input">Name</label><input type="text" class="input-field" id="name-input" placeholder="Your Name">`;
-
-      const roleInputGroup = document.createElement("div");
-      roleInputGroup.className = "input-group";
-      roleInputGroup.innerHTML = `<label for="role-input">Role</label><input type="text" class="input-field" id="role-input" placeholder="Your Role">`;
-
-      openReviewBtn.addEventListener("click", () => {
-        reviewModalOverlay.classList.add("active");
-        const modal = document.querySelector(".review-modal");
-        modal.insertBefore(nameInputGroup, modal.firstChild);
-        modal.insertBefore(roleInputGroup, nameInputGroup.nextSibling);
-
-        document.getElementById("name-input").value = "";
-        document.getElementById("role-input").value = "";
-        reviewTextarea.value = "";
-        currentRating = 0;
-        modalStars
-          .querySelectorAll(".modal-star")
-          .forEach((s) => s.classList.remove("selected"));
-        modalNameDisplay.textContent = "Your Name";
-        modalRoleDisplay.textContent = "Your Role";
-      });
-
-      reviewModalOverlay.addEventListener("click", (e) => {
-        if (e.target === reviewModalOverlay) {
-          reviewModalOverlay.classList.remove("active");
-          const modal = document.querySelector(".review-modal");
-          modal.removeChild(nameInputGroup);
-          modal.removeChild(roleInputGroup);
-        }
-      });
-
-      // Star selection
-      modalStars.addEventListener("click", (e) => {
-        if (e.target.classList.contains("modal-star")) {
-          currentRating = parseInt(e.target.dataset.rating);
-          modalStars.querySelectorAll(".modal-star").forEach((s, i) => {
-            s.classList.toggle("selected", i < currentRating);
-          });
-        }
-      });
-
-      // Live preview of name/role in modal header
-      document.addEventListener("input", (e) => {
-        if (e.target.id === "name-input")
-          modalNameDisplay.textContent = e.target.value || "Your Name";
-        if (e.target.id === "role-input")
-          modalRoleDisplay.textContent = e.target.value || "Your Role";
-      });
-
-      // ---------- Submit new review ----------
-      postButton.addEventListener("click", async () => {
-        const name = document.getElementById("name-input").value.trim();
-        const role = document.getElementById("role-input").value.trim();
-        const review = reviewTextarea.value.trim();
-
-        if (!name || !role || !review || currentRating === 0) {
-          alert("Please fill all fields and select a rating.");
-          return;
-        }
-
-        try {
-          const res = await fetch("http://127.0.0.1:5000/send_review", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, role, review, stars: currentRating }),
-          });
-
-          const data = await res.json();
-          if (data.status === "OK") {
-            alert("Thank you! Your review has been posted.");
-            reviewModalOverlay.classList.remove("active");
-            const modal = document.querySelector(".review-modal");
-            modal.removeChild(nameInputGroup);
-            modal.removeChild(roleInputGroup);
-            loadReviews(); // refresh list
-          } else {
-            alert("Error: " + (data.message || "Unknown"));
-          }
-        } catch (err) {
-          alert("Failed to send review – is the Flask server running?");
-          console.error(err);
-        }
-      });
-
-      // Mark the original static cards so we don’t delete them when refreshing
-      document
-        .querySelectorAll(".testimonial-card:not(.rating-card)")
-        .forEach((c) => (c.dataset.base = "true"));
     </script>
   </body>
 </html>
