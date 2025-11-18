@@ -303,11 +303,14 @@
             input.value = '';
 
             const prompt = `You are an expert in insect communication for etinuXe (tiny humans at 1cm).
+
+IMPORTANT: Give short answers (3-5 sentences max). Use plain text only - NO markdown formatting like ** or ##.
+
 Explain how to communicate with insects through pheromones, vibrations, and body language.
 
 Question: ${query}
 
-Provide practical advice.`;
+Keep your response brief and practical.`;
 
             const answer = await callGemini(prompt);
             chat.querySelector('.loading').remove();
@@ -331,14 +334,13 @@ Provide practical advice.`;
 
             const prompt = `You are accessing Dr. Tai Ni's digitized notes on miniaturization.
 
+IMPORTANT: Give short answers (3-5 sentences max). Use plain text only - NO markdown formatting like ** or ##.
+
 Search: ${query}
 
-Provide detailed information on:
-- Shrinking process mechanics
-- Safety protocols
-- Reversal techniques
-- Long-term effects
-- Equipment requirements`;
+Provide brief information on shrinking process, safety protocols, reversal techniques, and long-term effects.
+
+Keep your response concise and practical.`;
 
             const answer = await callGemini(prompt);
             chat.querySelector('.loading').remove();

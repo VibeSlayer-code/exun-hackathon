@@ -197,6 +197,8 @@
 
             const prompt = `You are helping the etinuXe community - humans shrunk to 1cm tall.
 
+IMPORTANT: Provide short, concise answers (3-5 sentences max). Use plain text only - NO markdown formatting like ** for bold or ## for headers.
+
 Convert this query from human to tiny human scale (1cm, ~0.1g body mass):
 
 ${query}
@@ -207,7 +209,7 @@ Consider:
 - Safety considerations
 - Metabolic changes
 
-Provide practical, detailed information.`;
+Keep your response brief and practical.`;
 
             try {
                 const response = await fetch(API_URL, {
