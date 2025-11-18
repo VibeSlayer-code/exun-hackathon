@@ -15,74 +15,77 @@
             background-color: #0c0c0c;
             color: #ffffff;
             zoom: 67%;
+            min-height: 100vh;
         }
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px;
+            padding: 60px 40px;
         }
         .header {
-            text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
         .header h1 {
             font-size: 48px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             color: #8654d8;
+        }
+        .header p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
         }
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
             margin-bottom: 40px;
         }
         .service-card {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 30px;
-            transition: all 0.3s ease;
+            border-radius: 12px;
+            padding: 32px;
+            transition: transform 0.2s;
+            cursor: pointer;
         }
         .service-card:hover {
+            transform: translateY(-4px);
             background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px);
         }
         .service-card h2 {
-            font-size: 32px;
-            margin-bottom: 15px;
+            font-size: 24px;
+            margin-bottom: 12px;
             color: #8654d8;
         }
         .service-card p {
-            font-size: 18px;
+            font-size: 14px;
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
         .service-button {
             background: #8654d8;
             color: #ffffff;
             border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
         .service-button:hover {
             background: #9d6be6;
         }
         .back-button {
-            background: #8654d8;
-            color: #ffffff;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 30px;
-            font-size: 18px;
-            cursor: pointer;
-            text-decoration: none;
             display: inline-block;
+            padding: 12px 24px;
+            background: rgba(134, 84, 216, 0.1);
+            border: 1px solid #8654d8;
+            border-radius: 8px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: background 0.2s;
         }
         .back-button:hover {
-            background: #9d6be6;
+            background: rgba(134, 84, 216, 0.2);
         }
         .modal {
             display: none;
@@ -92,9 +95,9 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
             align-items: center;
             justify-content: center;
+            z-index: 1000;
         }
         .modal.active {
             display: flex;
@@ -102,134 +105,132 @@
         .modal-content {
             background: #1a1a1a;
             padding: 40px;
-            border-radius: 20px;
-            max-width: 600px;
+            border-radius: 12px;
+            max-width: 500px;
             width: 90%;
         }
         .modal-content h2 {
             color: #8654d8;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
         .input-group label {
             display: block;
             margin-bottom: 8px;
-            font-size: 16px;
+            font-size: 14px;
         }
-        .input-group input, .input-group textarea {
+        .input-group input,
+        .input-group textarea {
             width: 100%;
             padding: 12px;
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
-            border-radius: 8px;
+            background: #0c0c0c;
+            border: 1px solid rgba(134, 84, 216, 0.3);
+            border-radius: 6px;
             color: #ffffff;
-            font-size: 16px;
+            font-size: 14px;
+            font-family: inherit;
         }
-        .close-modal {
+        .input-group textarea {
+            resize: vertical;
+        }
+        .close-btn {
             float: right;
-            font-size: 30px;
+            font-size: 24px;
             cursor: pointer;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .close-btn:hover {
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>💼 Services Portal</h1>
+            <h1>Services Portal</h1>
             <p>How etinuXe Generates Resources</p>
         </div>
 
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card" onclick="openModal('Spy Services')">
                 <h2>🕵️ Spy Services</h2>
-                <p>Upload a person you're looking for. Our tiny operatives can access places others can't.</p>
-                <button class="service-button" onclick="openModal('spy')">Request Service</button>
+                <p>Upload a person you're looking for. Our tiny operatives access places others can't.</p>
+                <button class="service-button">Request Service</button>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" onclick="openModal('Missing Person Finder')">
                 <h2>🔍 Missing Person Finder</h2>
                 <p>AI extracts missing people and pet rewards from newspapers and online sources.</p>
-                <button class="service-button" onclick="openModal('missing')">Search Now</button>
+                <button class="service-button">Search Now</button>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" onclick="openModal('Pest Investigations')">
                 <h2>🐛 Pest Investigations</h2>
-                <p>Contact us for expert extermination services. We understand pests like no one else.</p>
-                <button class="service-button" onclick="openModal('pest')">Contact</button>
+                <p>Expert extermination services. We understand pests like no one else.</p>
+                <button class="service-button">Contact</button>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" onclick="openModal('Forensics Services')">
                 <h2>🔬 Forensics Services</h2>
                 <p>Bank safes, currency notes, microdust patterns, and microprint reading specialists.</p>
-                <button class="service-button" onclick="openModal('forensics')">Inquire</button>
+                <button class="service-button">Inquire</button>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" onclick="openModal('Ore Detector')">
                 <h2>💎 Ore Detector</h2>
                 <p>On-hire consultants locate metal ores, gemstones, and petroleum with insect friends.</p>
-                <button class="service-button" onclick="openModal('ore')">Hire Consultant</button>
+                <button class="service-button">Hire Consultant</button>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" onclick="openModal('Vigilante Justice')">
                 <h2>⚖️ Vigilante Justice</h2>
                 <p>Free service - our mission to help those who can't help themselves.</p>
-                <button class="service-button" onclick="openModal('vigilante')">Report Case</button>
+                <button class="service-button">Report Case</button>
             </div>
         </div>
 
         <a href="index.html" class="back-button">← Back to Home</a>
     </div>
 
-    <div id="serviceModal" class="modal">
+    <div id="modal" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">×</span>
+            <span class="close-btn" onclick="closeModal()">×</span>
             <h2 id="modalTitle">Service Request</h2>
             <div class="input-group">
-                <label for="name">Your Name</label>
+                <label>Name</label>
                 <input type="text" id="name" placeholder="Enter your name">
             </div>
             <div class="input-group">
-                <label for="email">Email</label>
+                <label>Email</label>
                 <input type="email" id="email" placeholder="Enter your email">
             </div>
             <div class="input-group">
-                <label for="details">Service Details</label>
-                <textarea id="details" rows="5" placeholder="Describe your requirements"></textarea>
+                <label>Details</label>
+                <textarea id="details" rows="4" placeholder="Describe your requirements"></textarea>
             </div>
-            <button class="service-button" onclick="submitRequest()">Submit Request</button>
+            <button class="service-button" onclick="submit()">Submit Request</button>
         </div>
     </div>
 
     <script>
         function openModal(service) {
-            const modal = document.getElementById('serviceModal');
-            const title = document.getElementById('modalTitle');
-            const serviceNames = {
-                spy: 'Spy Services Request',
-                missing: 'Missing Person Search',
-                pest: 'Pest Investigation',
-                forensics: 'Forensics Service',
-                ore: 'Ore Detection Consultant',
-                vigilante: 'Vigilante Justice Report'
-            };
-            title.textContent = serviceNames[service];
-            modal.classList.add('active');
+            document.getElementById('modalTitle').textContent = service;
+            document.getElementById('modal').classList.add('active');
         }
 
         function closeModal() {
-            const modal = document.getElementById('serviceModal');
-            modal.classList.remove('active');
+            document.getElementById('modal').classList.remove('active');
         }
 
-        function submitRequest() {
+        function submit() {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const details = document.getElementById('details').value;
 
             if (name && email && details) {
-                alert('Request submitted successfully! We will contact you soon.');
+                alert('Request submitted successfully!');
                 closeModal();
             } else {
                 alert('Please fill all fields');
