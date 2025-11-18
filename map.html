@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Catacomb Map - etinuXe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #0c0c0c;
+            color: #ffffff;
+            zoom: 67%;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: #8654d8;
+        }
+        .header p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .map-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        #map {
+            width: 100%;
+            height: 600px;
+            border-radius: 12px;
+            background: #1a1a1a;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legend-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        .red { background: #ff4444; }
+        .orange { background: #ff9944; }
+        .blue { background: #4444ff; }
+        .back-button {
+            background: #8654d8;
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-button:hover {
+            background: #9d6be6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️ The Catacomb Map</h1>
+            <p>Interactive 3D Underground City Navigation</p>
+        </div>
+
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color red"></div>
+                    <span>Danger Zone - Avoid</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color orange"></div>
+                    <span>Cautious Area</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color blue"></div>
+                    <span>Safe Zone</span>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-button">← Back to Home</a>
+    </div>
+
+    <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
+    <script>
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: { lat: 28.6139, lng: 77.2090 },
+                mapTypeId: 'satellite',
+                styles: [
+                    { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                    { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                    { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] }
+                ]
+            });
+
+            const zones = [
+                { lat: 28.6139, lng: 77.2090, color: '#4444ff', name: 'Safe Zone 1' },
+                { lat: 28.6149, lng: 77.2100, color: '#ff9944', name: 'Cautious Area' },
+                { lat: 28.6129, lng: 77.2080, color: '#ff4444', name: 'Danger Zone' }
+            ];
+
+            zones.forEach(zone => {
+                new google.maps.Circle({
+                    strokeColor: zone.color,
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: zone.color,
+                    fillOpacity: 0.35,
+                    map,
+                    center: { lat: zone.lat, lng: zone.lng },
+                    radius: 200
+                });
+
+                new google.maps.Marker({
+                    position: { lat: zone.lat, lng: zone.lng },
+                    map,
+                    title: zone.name
+                });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Portal - etinuXe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #0c0c0c;
+            color: #ffffff;
+            zoom: 67%;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: #8654d8;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        .tab-button {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            border: 2px solid #8654d8;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            background: #8654d8;
+        }
+        .tab-button:hover {
+            background: #8654d8;
+        }
+        .tab-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .content-section {
+            margin-bottom: 30px;
+        }
+        .content-section h2 {
+            color: #8654d8;
+            margin-bottom: 15px;
+            font-size: 32px;
+        }
+        .content-section p {
+            line-height: 1.6;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .insect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .insect-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .insect-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+        }
+        .insect-card h3 {
+            color: #8654d8;
+            margin-bottom: 10px;
+        }
+        .chat-container {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            height: 400px;
+            overflow-y: auto;
+        }
+        .message {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .message.user {
+            background: #8654d8;
+            margin-left: 20%;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        .input-group input {
+            flex: 1;
+            padding: 15px;
+            background: #1a1a1a;
+            border: 2px solid #8654d8;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+        .send-button {
+            background: #8654d8;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .send-button:hover {
+            background: #9d6be6;
+        }
+        .back-button {
+            background: #8654d8;
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-button:hover {
+            background: #9d6be6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Knowledge Portal</h1>
+            <p>Educational Resources for Future Generations</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('insects')">🐛 Insect Guide</button>
+            <button class="tab-button" onclick="switchTab('language')">💬 Insect Language</button>
+            <button class="tab-button" onclick="switchTab('notes')">📖 Dr. Tai Ni's Notes</button>
+            <button class="tab-button" onclick="switchTab('microexp')">🎭 Microexperiences</button>
+        </div>
+
+        <div id="insects" class="tab-content active">
+            <div class="content-section">
+                <h2>Insects for Commute & Transport</h2>
+                <div class="insect-grid">
+                    <div class="insect-card">
+                        <h3>🐞 Ladybug</h3>
+                        <p>Speed: Medium | Load: Light | Best for: Short distances</p>
+                    </div>
+                    <div class="insect-card">
+                        <h3>🦗 Grasshopper</h3>
+                        <p>Speed: Fast | Load: Medium | Best for: Quick escapes</p>
+                    </div>
+                    <div class="insect-card">
+                        <h3>🐜 Ant</h3>
+                        <p>Speed: Slow | Load: Heavy | Best for: Cargo transport</p>
+                    </div>
+                    <div class="insect-card">
+                        <h3>🦋 Butterfly</h3>
+                        <p>Speed: Medium | Load: Light | Best for: Long distances</p>
+                    </div>
+                    <div class="insect-card">
+                        <h3>🪲 Beetle</h3>
+                        <p>Speed: Medium | Load: Heavy | Best for: Rough terrain</p>
+                    </div>
+                    <div class="insect-card">
+                        <h3>🦟 Dragonfly</h3>
+                        <p>Speed: Very Fast | Load: Light | Best for: Reconnaissance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="language" class="tab-content">
+            <div class="content-section">
+                <h2>Communicate with Insects</h2>
+                <p>Ask our AI assistant to translate phrases or learn basic insect communication patterns.</p>
+                <div class="chat-container" id="chatContainer"></div>
+                <div class="input-group">
+                    <input type="text" id="languageInput" placeholder="Ask about insect communication..." onkeypress="if(event.key==='Enter') sendLanguageQuery()">
+                    <button class="send-button" onclick="sendLanguageQuery()">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="notes" class="tab-content">
+            <div class="content-section">
+                <h2>Dr. Tai Ni's Digitized Notes</h2>
+                <p>Access the complete archive of Dr. Tai Ni's research on miniaturization technology.</p>
+                <div class="chat-container" id="notesChat"></div>
+                <div class="input-group">
+                    <input type="text" id="notesInput" placeholder="Search Dr. Tai Ni's notes..." onkeypress="if(event.key==='Enter') searchNotes()">
+                    <button class="send-button" onclick="searchNotes()">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="microexp" class="tab-content">
+            <div class="content-section">
+                <h2>🎭 Microexperiences Tourism</h2>
+                <p>Experience life at 1cm! We've reverse-engineered Dr. Tai Ni's shrinking technique for temporary use (2-48 hours).</p>
+                <div class="insect-grid">
+                    <div class="insect-card">
+                        <h3>🌆 City Explorer</h3>
+                        <p>Duration: 2 hours | Price: $199<br>Explore the city from a tiny perspective</p>
+                    </div>
+                    <div class="insect-card">
+                        <h3>🌳 Nature Adventure</h3>
+                        <p>Duration: 4 hours | Price: $349<br>Experience nature like never before</p>
+                    </div>
+                    <div class="insect-card">
+                        <h3>🏠 Home Safari</h3>
+                        <p>Duration: 24 hours | Price: $799<br>See your home from an entirely new angle</p>
+                    </div>
+                    <div class="insect-card">
+                        <h3>🗺️ Full Experience</h3>
+                        <p>Duration: 48 hours | Price: $1499<br>Complete tiny human experience</p>
+                    </div>
+                </div>
+                <button class="send-button" style="margin-top: 20px;" onclick="bookExperience()">Book Experience</button>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-button">← Back to Home</a>
+    </div>
+
+    <script>
+        const GEMINI_API_KEY = 'AIzaSyARufnP88s8Vwi-UY9R5K9SBA0p0lkukP0';
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        async function sendLanguageQuery() {
+            const input = document.getElementById('languageInput');
+            const query = input.value.trim();
+            if (!query) return;
+
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.innerHTML += `<div class="message user">${query}</div>`;
+            input.value = '';
+
+            const prompt = `You are an expert in insect communication for the etinuXe community (tiny humans at 1cm tall).
+Explain how to communicate with insects through pheromones, vibrations, and body language.
+
+Question: ${query}
+
+Provide practical advice for tiny humans.`;
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }]
+                    })
+                });
+
+                const data = await response.json();
+                const answer = data.candidates[0].content.parts[0].text;
+                chatContainer.innerHTML += `<div class="message">${answer}</div>`;
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            } catch (error) {
+                chatContainer.innerHTML += `<div class="message">Error: ${error.message}</div>`;
+            }
+        }
+
+        async function searchNotes() {
+            const input = document.getElementById('notesInput');
+            const query = input.value.trim();
+            if (!query) return;
+
+            const chatContainer = document.getElementById('notesChat');
+            chatContainer.innerHTML += `<div class="message user">${query}</div>`;
+            input.value = '';
+
+            const prompt = `You are accessing Dr. Tai Ni's digitized notes on miniaturization technology for the etinuXe project.
+
+Search query: ${query}
+
+Provide detailed information from Dr. Tai Ni's research, including:
+- Shrinking process mechanics
+- Safety protocols
+- Reversal techniques
+- Long-term effects
+- Equipment requirements
+
+Answer as if retrieving from actual research notes.`;
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }]
+                    })
+                });
+
+                const data = await response.json();
+                const answer = data.candidates[0].content.parts[0].text;
+                chatContainer.innerHTML += `<div class="message">${answer}</div>`;
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            } catch (error) {
+                chatContainer.innerHTML += `<div class="message">Error: ${error.message}</div>`;
+            }
+        }
+
+        function bookExperience() {
+            alert('Booking feature coming soon! Contact us at microexp@etinuxe.com');
+        }
+    </script>
+</body>
+</html>
