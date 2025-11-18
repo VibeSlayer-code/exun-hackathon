@@ -133,6 +133,9 @@
         transform: translateY(-2px);
         box-shadow: 0 10px 30px rgba(134, 84, 216, 0.4);
       }
+      .login-button.hidden {
+        display: none;
+      }
       .hero-section {
         text-align: center;
         padding-top: 459px;
@@ -810,7 +813,7 @@
             <li><a href="#about" class="navigation-link">About</a></li>
           </ul>
         </div>
-        <button class="login-button">Log In</button>
+        <button class="login-button" id="login-button" onclick="window.location.href='login.html'">Log In</button>
       </nav>
       <section class="hero-section" id="home">
         <div class="hero-title-container">
@@ -1044,6 +1047,13 @@
       </div>
     </div>
     <script>
+      if (localStorage.getItem("login") === "true") {
+        const loginButton = document.getElementById("login-button");
+        if (loginButton) {
+          loginButton.classList.add("hidden");
+        }
+      }
+
       const navLinks = document.querySelectorAll(".navigation-link");
       navLinks.forEach((link) => {
         link.addEventListener("click", function () {
